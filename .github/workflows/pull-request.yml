@@ -8,17 +8,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get Deployment
-        uses: KowalskiTom/get-github-deployment@v1
+      # - name: Get Deployment
+      #   uses: KowalskiTom/get-github-deployment@v1
+      #   id: get-deployment
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     env: staging
+
+      # - name: sh
+      #   run: |
+      #     echo "steps.get-deployment.outputs.deployment_statuses_url ${{ steps.get-deployment.outputs.deployment_statuses_url }}"
+
+      # - name: sh
+      #   run: |
+      #     echo "steps.get-deployment.outputs.deployment_transient_environment ${{ steps.get-deployment.outputs.deployment_transient_environment }}"
+
+      - name: Get deployment URL
         id: get-deployment
+        uses: dorshinar/get-deployment-url@master
+        timeout-minutes: 5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          env: staging
 
       - name: sh
         run: |
-          echo "steps.get-deployment.outputs.deployment_statuses_url ${{ steps.get-deployment.outputs.deployment_statuses_url }}"
-
-      - name: sh
-        run: |
-          echo "steps.get-deployment.outputs.deployment_transient_environment ${{ steps.get-deployment.outputs.deployment_transient_environment }}"
+          echo "steps.get-deployment.outputs.deployment ${{ steps.get-deployment.outputs.deployment }}"

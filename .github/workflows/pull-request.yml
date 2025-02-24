@@ -2,6 +2,7 @@ name: validate pull request
 
 on:
   pull_request:
+    branches: ["develop"]
 
 jobs:
   validation:
@@ -14,10 +15,6 @@ jobs:
         timeout-minutes: 5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: sh
-        run: |
-          echo "steps.get-deployment.outputs.deployment ${{ steps.get-deployment.outputs.deployment }}"
 
       - name: Checkout
         uses: actions/checkout@v4

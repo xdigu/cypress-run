@@ -1,0 +1,15 @@
+{
+  "name": "cypress-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:xdigu/cypress-test.git",
+  "author": "Rodrigo Jorge <xdigu@live.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "BASE_URL=http://google.com cypress run --browser chrome"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "cypress": "^14.0.3"
+  }
+}

@@ -19,8 +19,15 @@ jobs:
         run: |
           echo "steps.get-deployment.outputs.deployment ${{ steps.get-deployment.outputs.deployment }}"
 
+      - name: Checkout private tools
+        uses: actions/checkout@v4
+        with:
+          repository: xdigu/cypress-test
+          token: ${{ secrets.GITHUB_TOKEN }} # `GH_PAT` is a secret that contains your PAT
+          path: cypress
+
       - name: run cypress
         id: cypress
-        uses: xdigu/cypress-test@v1
+        uses: xdigu/cypress-test@v2
         with:
           base_url: ${{ steps.get-deployment.outputs.deployment }}

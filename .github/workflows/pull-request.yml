@@ -18,4 +18,4 @@ jobs:
       - name: sh
         id: shell
         run: |
-          echo "steps.get-deployment.outputs.deployment_url ${{ steps.get-deployment.outputs.deployment_url }}"
+          echo "steps.get-deployment.outputs.deployment_statuses_url ${{ steps.get-deployment.outputs.deployment_statuses_url }}"

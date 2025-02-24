@@ -8,21 +8,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # - name: Get Deployment
-      #   uses: KowalskiTom/get-github-deployment@v1
-      #   id: get-deployment
-      #   with:
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     env: staging
-
-      # - name: sh
-      #   run: |
-      #     echo "steps.get-deployment.outputs.deployment_statuses_url ${{ steps.get-deployment.outputs.deployment_statuses_url }}"
-
-      # - name: sh
-      #   run: |
-      #     echo "steps.get-deployment.outputs.deployment_transient_environment ${{ steps.get-deployment.outputs.deployment_transient_environment }}"
-
       - name: Get deployment URL
         id: get-deployment
         uses: dorshinar/get-deployment-url@master
@@ -33,3 +18,9 @@ jobs:
       - name: sh
         run: |
           echo "steps.get-deployment.outputs.deployment ${{ steps.get-deployment.outputs.deployment }}"
+
+      - name: run cypress
+        id: cypress
+        uses: xdigu/cypress-test
+        with:
+          base_url: ${{ steps.get-deployment.outputs.deployment }}

@@ -1,0 +1,21 @@
+name: validate pull request
+
+on:
+  pull_request:
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get Deployment
+        uses: KowalskiTom/get-github-deployment@v1
+        id: get-deployment
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          env: staging
+
+      - name: sh
+        id: shell
+        run: |
+          echo "steps.get-deployment.outputs.deployment_id ${{ steps.get-deployment.outputs.deployment_id }}"

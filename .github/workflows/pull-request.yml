@@ -21,6 +21,6 @@ jobs:
 
       - name: run cypress
         id: cypress
-        uses: xdigu/cypress-test
+        uses: xdigu/cypress-test@v1
         with:
           base_url: ${{ steps.get-deployment.outputs.deployment }}

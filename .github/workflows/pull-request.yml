@@ -16,6 +16,9 @@ jobs:
           env: staging
 
       - name: sh
-        id: shell
         run: |
           echo "steps.get-deployment.outputs.deployment_statuses_url ${{ steps.get-deployment.outputs.deployment_statuses_url }}"
+
+      - name: sh
+        run: |
+          echo "steps.get-deployment.outputs.deployment_transient_environment ${{ steps.get-deployment.outputs.deployment_transient_environment }}"

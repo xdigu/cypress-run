@@ -19,16 +19,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/checkout@v4
-        with:
-          repository: 'xdigu/cypress-test'
-          path: 'cypress-test'
-          ref: 'main'
-
-      - name: Print config file
-        run: |  
-          ls -l cypress-test
-
   validation:
     needs: get-deployment
     uses: xdigu/cypress-test/.github/workflows/test.yml@main

@@ -25,6 +25,10 @@ jobs:
           path: 'cypress-test'
           ref: 'main'
 
+      - name: Print config file
+        run: |  
+          cat cypress-test/cypress.config.js
+
   validation:
     needs: get-deployment
     uses: xdigu/cypress-test/.github/workflows/test.yml@main

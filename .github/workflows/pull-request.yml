@@ -27,7 +27,7 @@ jobs:
 
       - name: Print config file
         run: |  
-          cat cypress-test/cypress.config.js
+          ls -l cypress-test
 
   validation:
     needs: get-deployment

@@ -5,8 +5,11 @@ on:
     branches: ["develop"]
 
 jobs:
-  validation:
+  get-deployment:
     runs-on: ubuntu-latest
+
+    outputs:
+      deployment: ${{ steps.get-deployment.outputs.deployment }}
 
     steps:
       - name: Get deployment URL
@@ -16,10 +19,9 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Cypress run with env
-        uses: cypress-io/github-action@v6
-        env:
-          BASE_URL: ${{ steps.get-deployment.outputs.deployment }}
+  validation:
+    needs: get-deployment
+    uses: xdigu/cypress-test/.github/workflows/test.yml@main
+    with:
+      work_dir: "cypress-test"
+      base_url: ${{ needs.get-deployment.outputs.deployment }}

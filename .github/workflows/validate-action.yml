@@ -1,0 +1,22 @@
+name: validate pull request from action
+
+on:
+  pull_request:
+    branches: ["develop"]
+
+jobs:
+  get-deployment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get deployment URL
+        id: get-deployment
+        uses: dorshinar/get-deployment-url@master
+        timeout-minutes: 5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Validate PR
+        uses: xdigu/cypress-test@main
+        with:
+          base_url: ${{ steps.get-deployment.outputs.deployment }}

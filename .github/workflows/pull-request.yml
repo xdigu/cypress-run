@@ -23,5 +23,4 @@ jobs:
     needs: get-deployment
     uses: xdigu/cypress-test/.github/workflows/test.yml@main
     with:
-      work_dir: "cypress-test"
       base_url: ${{ needs.get-deployment.outputs.deployment }}

@@ -16,11 +16,15 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Checkout
-        uses: actions/checkout@v4
+      # - name: Checkout
+      #   uses: actions/checkout@v4
 
-      - name: Cypress run with env
-        uses: cypress-io/github-action@v6
-        env:
-          BASE_URL: ${{ steps.get-deployment.outputs.deployment }}
-          TAG: critical
+      # - name: Cypress run with env
+      #   uses: cypress-io/github-action@v6
+      #   env:
+      #     BASE_URL: ${{ steps.get-deployment.outputs.deployment }}
+
+      - name: Run workflow
+        uses: xdigu/cypress-test/blob/main/.github/workflows/test.yml@main
+        with:
+          base_url: ${{ steps.get-deployment.outputs.deployment }}

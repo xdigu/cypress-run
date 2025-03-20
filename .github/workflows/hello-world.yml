@@ -1,4 +1,4 @@
-name: validate pull request from action
+name: Hello world
 
 on:
   pull_request:

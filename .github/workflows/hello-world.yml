@@ -1,0 +1,16 @@
+name: validate pull request from action
+
+on:
+  pull_request:
+    branches: ["develop"]
+
+jobs:
+  validate-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Hello world
+        uses: xdigu/cypress-test/hello-world@main
+
+      - name: hello world-two
+        uses: xdigu/cypress-test/hello-world@main

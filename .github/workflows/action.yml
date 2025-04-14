@@ -5,7 +5,7 @@ on:
     branches: ["develop"]
 
 jobs:
-  validate-pr:
+  cypress-validation:
     runs-on: ubuntu-latest
 
     strategy:
@@ -19,14 +19,14 @@ jobs:
           - mobile
 
     steps:
-      - name: "Get deployment URL - version: ${{ matrix.version }}, device: ${{ matrix.device }}"
+      - name: Get deployment URL
         id: get-deployment
         uses: dorshinar/get-deployment-url@master
         timeout-minutes: 5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: "Validate PR - version: ${{ matrix.version }}, device: ${{ matrix.device }}"
+      - name: Cypress run
         uses: xdigu/cypress-test@main
         with:
           base_url: ${{ steps.get-deployment.outputs.deployment }}

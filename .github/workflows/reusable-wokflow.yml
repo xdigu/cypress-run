@@ -19,7 +19,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-  validation:
+  cypress-validation:
     needs: get-deployment
 
     strategy:
@@ -32,6 +32,6 @@ jobs:
           - desktop
           - mobile
 
-    uses: xdigu/cypress-test/.github/workflows/test.yml@main
+    uses: xdigu/cypress-test/.github/workflows/cypress-validation.yml@main
     with:
       base_url: ${{ needs.get-deployment.outputs.deployment }}

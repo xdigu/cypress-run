@@ -1,4 +1,4 @@
-name: validate pull request from action
+name: action with matrix
 
 on:
   pull_request:
@@ -7,16 +7,25 @@ on:
 jobs:
   validate-pr:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version:
+          - 1
+          - 2
+          - 3
+        device:
+          - desktop
+          - mobile
 
     steps:
-      - name: Get deployment URL
+      - name: "Get deployment URL - version: ${{ matrix.version }}, device: ${{ matrix.device }}"
         id: get-deployment
         uses: dorshinar/get-deployment-url@master
         timeout-minutes: 5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Validate PR
+      - name: "Validate PR - version: ${{ matrix.version }}, device: ${{ matrix.device }}"
         uses: xdigu/cypress-test@main
         with:
           base_url: ${{ steps.get-deployment.outputs.deployment }}

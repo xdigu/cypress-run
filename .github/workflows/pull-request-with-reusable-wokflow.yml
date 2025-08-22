@@ -1,4 +1,4 @@
-name: default workflow
+name: reusable workflow
 
 on:
   pull_request:
@@ -20,8 +20,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
   cypress-validation:
-    runs-on: ubuntu-latest
-
     needs: get-deployment
 
     strategy:
@@ -32,8 +30,6 @@ jobs:
           - desktop
           - mobile
 
-    steps:
-      - name: Cypress run
-        uses: xdigu/cypress-workflow@main
-        with:
-          base_url: ${{ needs.get-deployment.outputs.deployment }}
+    uses: xdigu/cypress-workflow/.github/workflows/reusable-workflow.yml@main
+    with:
+      base_url: ${{ needs.get-deployment.outputs.deployment }}

@@ -1,4 +1,4 @@
-name: reusable workflow with matrix
+name: reusable workflow
 
 on:
   pull_request:
@@ -26,12 +26,10 @@ jobs:
       matrix:
         version:
           - 1
-          - 2
-          - 3
         device:
           - desktop
           - mobile
 
-    uses: xdigu/cypress-test/.github/workflows/reusable-workflow@main
+    uses: xdigu/cypress-test/.github/workflows/reusable-workflow.yml@main
     with:
       base_url: ${{ needs.get-deployment.outputs.deployment }}

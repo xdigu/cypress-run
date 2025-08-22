@@ -32,6 +32,6 @@ jobs:
           - desktop
           - mobile
 
-    uses: xdigu/cypress-test/.github/workflows/cypress-validation.yml@main
+    uses: xdigu/cypress-test/.github/workflows/reusable-workflow@main
     with:
       base_url: ${{ needs.get-deployment.outputs.deployment }}

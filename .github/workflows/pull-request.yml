@@ -34,6 +34,6 @@ jobs:
 
     steps:
       - name: Cypress run
-        uses: xdigu/cypress-test@main
+        uses: xdigu/cypress-workflow@main
         with:
           base_url: ${{ needs.get-deployment.outputs.deployment }}

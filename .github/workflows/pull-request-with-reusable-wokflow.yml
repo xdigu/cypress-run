@@ -30,6 +30,6 @@ jobs:
           - desktop
           - mobile
 
-    uses: xdigu/cypress-test/.github/workflows/reusable-workflow.yml@main
+    uses: xdigu/cypress-workflow/.github/workflows/reusable-workflow.yml@main
     with:
       base_url: ${{ needs.get-deployment.outputs.deployment }}
